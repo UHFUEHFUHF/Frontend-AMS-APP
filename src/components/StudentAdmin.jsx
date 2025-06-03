@@ -3,39 +3,37 @@ import axios from "axios";
 import {toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { useContext } from 'react';
+import { StudentContext } from '../Context/ContextAPI';
 
 
 
 const StudentAdmin = () => {
 
-  const [students, setStudents] = useState([]);
+  const {Data , fetchStudent} = useContext(StudentContext)
 
-  const filteredUser = students.filter(data => data.role === 'user');
+  const filteredUser = Data.filter(data => data.role === 'user');
 
-  useEffect(() => {
-    fetchStudent();
-  }, []);
-
-  const fetchStudent = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/v1/");
-      setStudents(response.data);
-    } catch (error) {
-      console.log("Error in fetching the data", error);
-    }
-  };
 
   const deleteData = async (id) => {
     try {
 
+      if(window.confirm("are you sure you want to delete data")){
+     
     const res =  await axios.delete(`http://localhost:8000/api/v1/${id}`);
+
       if(res.status == 200){
 
         toast.success("Student Deleted Successfully")
       } else{
         toast.error("error in deleting student")
       }
+      
       fetchStudent();
+    
+    }else{
+      alert("Cancelled")
+    }
     } catch (error) {
       console.log("Error during deletion", error);
     }
@@ -43,6 +41,7 @@ const StudentAdmin = () => {
 
   return (
     <>
+   
     <ToastContainer position="top-right" autoClose={3000} />
     <div className="p-6">
         <div className='flex gap-4 justify-center pb-6 '>
