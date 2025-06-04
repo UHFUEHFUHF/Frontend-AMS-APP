@@ -6,7 +6,7 @@ import { StudentContext } from '../Context/ContextAPI'
 
 
  const Dashboard = () => {
-     const {Data} = useContext(StudentContext);
+     const {Data , CourseData} = useContext(StudentContext);
      const Teacher = Data.filter(teacher => teacher.role === 'teacher')
      const Student = Data.filter(student => student.role === 'user')
 
@@ -32,7 +32,7 @@ import { StudentContext } from '../Context/ContextAPI'
    
     <div className="h-32 w-44 bg-indigo-600 rounded-2xl text-center grid place-content-center text-2xl font-semibold text-white shadow-xl hover:scale-105 transform transition duration-300 ease-in-out">
       <p className="text-lg text-gray-100">Courses</p>
-      <p className="text-3xl text-green-300 font-bold">{}</p>
+      <p className="text-3xl text-green-300 font-bold">{CourseData.data.length}</p>
     </div>
   </div>
 </>
