@@ -37,6 +37,43 @@ import { StudentContext } from '../Context/ContextAPI';
       }
 
 
+      const HandleForm = async (e) =>{
+        e.preventDefault();
+
+        const Form = e.target;
+
+        const formData = {
+
+            username : Form.user.value,
+            password : Form.password.value,
+            email : Form.email.value,
+            role : "teacher"
+
+        }
+        try {
+
+            let response = await axios.post("http://localhost:8000/api/v1/register" , formData)
+               
+                fetchStudent();
+               Form.reset();
+
+               if(response.status == 200){
+                    toast.success("teacher saved successfully")
+               } else{
+                toast.error("error while saving data")
+               }
+
+               
+
+
+        } catch (error) {
+            console.log(error)
+        }
+         
+            console.log(formData)
+
+      }
+      
 
   return (
     <> 
@@ -75,6 +112,36 @@ import { StudentContext } from '../Context/ContextAPI';
         )
     } 
     </table>
+    <h1 className='mt-5 grid place-content-center text-2xl '>Add Teacher</h1>
+    <div className='grid place-content-center'>
+    <div className=' bg-amber-50 mt-8 flex flex-col rounded-2xl w-2xl px-20'>
+        
+        <form action="submit" className='h-65' onSubmit={HandleForm}>
+            <div className='flex flex-col mt-2 gap-2'>
+
+            <label htmlFor="text" className='ml-3 text-xl'>Name</label>
+            <input name="user" type="text" spellCheck="false" required="true" className='bg-amber-200 rounded px-2' />
+
+            </div>
+             <div className='flex flex-col mt-2 gap-2'>
+
+            <label htmlFor="text" className='ml-3 text-xl'>Password</label>
+            <input name="password" type="text" spellCheck="false" required="true" className='bg-amber-200 rounded px-2' />
+
+            </div>
+
+             <div className='flex flex-col mt-2 gap-2'>
+
+            <label htmlFor="text" className='ml-3 text-xl'>Email</label>
+            <input name="email" type="email" spellCheck="false" required="true" className='bg-amber-200 rounded px-2' />
+
+            </div>
+            <div className='flex justify-center mt-4'>
+            <button className='cursor-pointer px-8 rounded-xl bg-green-600 text-white font-bold'>Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
     </>
   )
 }
