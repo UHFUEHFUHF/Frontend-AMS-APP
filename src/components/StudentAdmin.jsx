@@ -49,6 +49,7 @@ const StudentAdmin = () => {
             <div className='pt-6 text-4xl font-medium text-purple-600'>Student List</div>
         </div>
       <div className="overflow-x-auto rounded-lg shadow-lg">
+         { filteredUser.length != 0 ? 
         <table className="min-w-full text-left border border-gray-200 bg-white">
           <thead className="bg-indigo-600 text-white text-lg">
             <tr>
@@ -59,8 +60,12 @@ const StudentAdmin = () => {
               <th className="px-4 py-2">Action</th>
             </tr>
           </thead>
+          
+
           <tbody className="text-gray-700">
-            {filteredUser.map((data, index) => (
+           {
+            
+            filteredUser.map((data, index) =>  (
               <tr key={data._id} className="hover:bg-indigo-50 transition duration-200 border-t">
                 <td className="px-4 py-2 border-r text-indigo-500 font-bold">{index + 1}</td>
                 <td className="px-4 py-2 border-r">{data.username}</td>
@@ -72,9 +77,11 @@ const StudentAdmin = () => {
                   </svg>
                 </td>
               </tr>
-            ))}
+))} 
           </tbody>
+         
         </table>
+         : <div className='text-center text-2xl bg-amber-50 text-fuchsia-700'>No Data Found</div> } 
       </div>
     </div>
     </>

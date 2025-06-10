@@ -82,6 +82,8 @@ import { StudentContext } from '../Context/ContextAPI';
     <img className='h-24 rounded-2xl' src="https://imgs.search.brave.com/6l2356TnBQTAIRUDG5rcw7Tj6xkduku-teTTxmmlU1E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS12ZWN0b3Iv/aGFuZC1kcmF3bi10/ZWFjaGVyLXMtZGF5/LWlsbHVzdHJhdGlv/bi1zcGFuaXNoXzIz/LTIxNDkzNjg1ODcu/anBn" alt="" />
     <p className='mt-7 ml-3 text-4xl text-green-600 font-medium'>Teacher List</p>
     </div>
+    { FilteredTeacher.length != 0 ?
+    
     <table className='border min-w-full font-medium'> 
         <thead className='bg-green-500 border'>
         <tr className='text-green-100 border '>
@@ -111,7 +113,8 @@ import { StudentContext } from '../Context/ContextAPI';
            
         )
     } 
-    </table>
+    </table> : <div className='text-center py-6 bg-amber-50 rounded-2xl text-3xl text-green-500'>No Data Found</div> 
+ }
     <h1 className='mt-5 grid place-content-center text-2xl '>Add Teacher</h1>
     <div className='grid place-content-center'>
     <div className=' bg-amber-50 mt-8 flex flex-col rounded-2xl w-2xl px-20'>
